@@ -39,12 +39,10 @@ public class ContaCorrente extends Conta {
 						System.out.println("limite em conta utilizado.");
 						return true;
 					}else {
-						System.out.println("Operação cancelada");
+						throw new RuntimeException("Operação cancelada");
 					}
-			return true;
 		} else {
-			System.out.println("Limite insuficiente");
-			return false;
+			throw new RuntimeException("Limite insuficiente");
 		}
 
 	}

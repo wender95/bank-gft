@@ -14,7 +14,7 @@ public abstract class Conta implements IConta {
 
 
 	public Conta(Cliente titular) {
-
+		this.titular = titular;
 		Conta.NUMERO_GERAL++;
 		this.numero += NUMERO_GERAL;
 		System.out.println("Conta criada. \nTitular: " + titular.getNome() + "\nCPF: " + titular.getCpf()
@@ -38,14 +38,27 @@ public abstract class Conta implements IConta {
 	}
 
 	public boolean saca(double valor) {
-		if (this.saldo >= valor) {
-			this.saldo -= valor;
+		if(saldo >= valor) {
+			saldo -= valor;
 			return true;
-		} else  {
-			System.out.println("\nSaldo insuficiente");
+		}else {
 			return false;
 		}
+		
 	}
+	
+		public boolean validaSaque(double valor) {
+			if(valor > saldo) {
+				throw new RuntimeException("Saldo insuficiente");
+				
+			}if(valor <= 0) {
+				throw new RuntimeException("O valor do saque deve ser maior que R$ 0.00");
+			}else {
+				return true;
+			}
+	}
+	
+
 
 	public boolean transfere(int valor, Conta destino) {
 
@@ -54,8 +67,7 @@ public abstract class Conta implements IConta {
 			System.out.println("Transferencia realizada");
 			return true;
 		} else {
-			System.out.println("\nSaldo insuficiente");
-			return false;
+			throw new RuntimeException("Saldo insuficiente");
 		}
 
 	}
@@ -73,12 +85,16 @@ public abstract class Conta implements IConta {
 		
 	}
 	
-	public boolean sacaAutenticado(double valor, int senha) throws Exception {
-		if(this.titular.autenticador(senha)) {
-			this.saca(valor);
-			return true;
-		}else {
-			return false;
-		}
+	public boolean sacaAutenticado(double valor, int senha) {
+		
+			if(this.titular.autenticador(senha)) {
+				this.saca(valor);
+				return true;
+			}else {
+				throw new RuntimeException("Senha incorreta");
+			}
+		
+		
+		
 	}
 }
