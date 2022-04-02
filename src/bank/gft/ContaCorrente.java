@@ -9,9 +9,8 @@ public class ContaCorrente extends Conta {
 
 	Scanner scan = new Scanner(System.in);
 
-	public ContaCorrente(Cliente titular) {
-		super(titular);
-
+	public ContaCorrente(Cliente titular, Agencia agencia) {
+		super(titular, agencia);
 	}
 
 	public double getLimite() {
@@ -28,7 +27,7 @@ public class ContaCorrente extends Conta {
 		if (super.saca(valor)) {
 			return true;
 		} else if (super.getSaldo() < valor && super.getSaldo() + this.limite >= valor) {
-			System.out.println("Utilizar limite em conta? [1] Sim  / [2] Não");
+			System.out.println("Utilizar limite em conta? [1] Sim  / [2] NÃ£o");
 			int usarLimite = scan.nextInt();
 				
 				if (usarLimite == 1) {
@@ -39,7 +38,7 @@ public class ContaCorrente extends Conta {
 						System.out.println("limite em conta utilizado.");
 						return true;
 					}else {
-						throw new RuntimeException("Operação cancelada");
+						throw new RuntimeException("OperaÃ§Ã£o cancelada");
 					}
 		} else {
 			throw new RuntimeException("Limite insuficiente");

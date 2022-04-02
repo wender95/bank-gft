@@ -3,9 +3,8 @@ package bank.gft;
 
 public class ContaPoupanca extends Conta {
 
-	public ContaPoupanca(Cliente titular) {
-		super(titular);
-		// TODO Auto-generated constructor stub
+	public ContaPoupanca(Cliente titular, Agencia agencia) {
+		super(titular, agencia);
 	}
 
 	@Override
