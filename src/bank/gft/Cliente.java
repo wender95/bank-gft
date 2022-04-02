@@ -1,5 +1,7 @@
 package bank.gft;
 
+import java.util.Scanner;
+
 public class Cliente  implements Autenticador {
 	private String nome;
 	private String cpf;
@@ -28,9 +30,12 @@ public class Cliente  implements Autenticador {
 	}
 
 	@Override
-	public boolean autenticador(int senha) {
+	public boolean autenticador() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Insira a senha: ");
+		int senha = scan.nextInt();
 		if (senha == this.senha) {
-			System.out.println("Senha autenticada");
+			System.out.println("Senha correta");
 			
 			return true;
 		}else {

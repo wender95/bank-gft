@@ -3,6 +3,8 @@ package bank.gft;
 import java.util.Scanner;
 
 public class Emprestimo {
+
+	private final Conta CONTA;
 	
 	private double valor;
 	private double entrada;
@@ -13,7 +15,8 @@ public class Emprestimo {
 	
 	Scanner scan = new Scanner (System.in);
 	
-	public Emprestimo() {
+	public Emprestimo(Conta conta) {
+		this.CONTA = conta;
 		simulaEmprestimo();
 	}
 	
@@ -29,7 +32,7 @@ public class Emprestimo {
 		parcelas = scan.nextInt();
 		
 		
-		if(entrada < valor*0.20) {
+		if(entrada < valor*0.10) {
 			throw new RuntimeException("Valor da entrada inferior ao minimo de 20%");
 			
 		}else if(parcelas < 2){
@@ -42,9 +45,20 @@ public class Emprestimo {
 			System.out.println("Valor do emprestimo: R$ " + valor +"\nValor da entrada: R$ " + entrada + 
 					"\nNumero de parcelas: " + parcelas + "\nValor das parcelas: " + totalAPagar/parcelas +
 					"\nValor total a pagar: R$ " + totalAPagar );
+
+			System.out.println("[1] Confirmar e realizar o emprestimo / [2] Cancelar");
+			int continuar = scan.nextInt();
+			if(continuar == 1){
+				efetivaEmprestimo(CONTA);
+			}else{
+				throw new RuntimeException("Operação cancelada");
+			}
 		}
 		
 		
 	}
 
+	public void efetivaEmprestimo(Conta conta){
+		conta.deposita(this.valor);
+	}
 }
