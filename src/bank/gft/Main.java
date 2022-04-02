@@ -13,16 +13,19 @@ public class Main {
 
 		Conta cc1 = new ContaCorrente(c1, agencia123);
 		Conta cc2 = new ContaCorrente(c2, agencia123);
+		Conta cp1 = new ContaPoupanca(c1, agencia123);
 
 		System.out.println(agencia123.getContas());
 
 		cc2.deposita(10);
-		cc1.deposita(40);
+		cc1.deposita(100);
 		cc1.transfere(50, cc2);
+		cc1.transfere(20, cp1);
 
 		Emprestimo e1 = new Emprestimo(cc1);
 		cc1.extrato();
 		cc2.extrato();
+		cp1.extrato();
 
 
 

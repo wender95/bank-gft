@@ -10,15 +10,19 @@ public class ContaPoupanca extends Conta {
 	@Override
 	public boolean transfere(double valor, Conta destino) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean saca(double valor) {
 		// TODO Auto-generated method stub
-		System.out.println("Não é possivel realizar um saque da Conta Poupança");
-		return false;
+		throw new RuntimeException ("Não é possivel realizar um saque da Conta Poupança");
 	}
 
 
+	@Override
+	public void extrato() {
+		System.out.println("\n***********EXTRATO**********" + "\nTitular: " + getTITULAR().getNome() + "\nConta: "
+				+ getNumero() + "\nAgencia: " + getAgencia() + "\nSaldo em conta:" + getSaldo() );
+	}
 }
