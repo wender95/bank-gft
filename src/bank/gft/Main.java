@@ -7,13 +7,22 @@ public class Main {
 		Cliente c1 = new Cliente("Wender", "123");
 		Cliente c2 = new Cliente("Izabela", "456");
 		c1.setSenha(123);
+		c2.setSenha(123);
+
+
 
 		Conta cc1 = new ContaCorrente(c1, agencia123);
 		Conta cc2 = new ContaCorrente(c2, agencia123);
+
+		System.out.println(agencia123.getContas());
+
 		cc2.deposita(10);
 		cc1.deposita(40);
 		cc1.transfere(50, cc2);
 
+		Emprestimo e1 = new Emprestimo(cc1);
+		cc1.extrato();
+		cc2.extrato();
 
 
 

@@ -40,9 +40,17 @@ public abstract class Conta implements IConta {
 	}
 
 	public double deposita(double valor) {
-		return this.saldo += valor;
+		if (valor > 0){
+			if (getTITULAR().autenticador()) {
+				return this.saldo += valor;
+			}
 
+		}else{
+			throw  new RuntimeException("O valor do deposito deve ser maior que R$ 0,00");
+		} return 0;
 	}
+
+
 
 	public boolean saca(double valor) {
 		if (getTITULAR().autenticador()) {
